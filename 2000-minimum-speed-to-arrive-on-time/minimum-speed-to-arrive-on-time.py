@@ -12,8 +12,8 @@ class Solution:
             return ret
 
         left = 1
-        right = 10 ** 12
-        
+        right = 10 ** 9
+
         ans = -1
 
         while left <= right:
