@@ -19,11 +19,11 @@ class UnionFind:
         else:
             if self.rank[a_parent] >= self.rank[b_parent]:
                 self.parent[a_parent] = b_parent
-                self.rank[b_parent] += self.rank[a_parent] + 1
+                self.rank[b_parent] += 1
                 self.precalc[b_parent] &= w & self.precalc[a_parent]
             else:
                 self.parent[b_parent] = a_parent
-                self.rank[a_parent] += self.rank[b_parent] + 1
+                self.rank[a_parent] += 1
                 self.precalc[a_parent] &= w & self.precalc[b_parent]
 
     def check(self, a: int, b: int):
