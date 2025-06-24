@@ -1,24 +1,14 @@
 class Solution:
-    def findKDistantIndices(self, nums: List[int], key: int, k: int) -> List[int]:
-        N = len(nums)
-        
-        check = [0] * N
-
-        for i, v in enumerate(nums):
-            if v == key:
-                check[max(0, i - k)] += 1
-
-                if i + k + 1 < N:
-                    check[i + k + 1] -= 1
-
-        ans = []
-
-        cnt = 0
-
-        for i, v in enumerate(check):
-            cnt += v
-
-            if cnt > 0:
-                ans.append(i)
-
-        return ans
+    def findKDistantIndices(
+        self, nums: List[int], key: int, k: int
+    ) -> List[int]:
+        res = []
+        r = 0  # unjudged minimum index
+        n = len(nums)
+        for j in range(n):
+            if nums[j] == key:
+                l = max(r, j - k)
+                r = min(n - 1, j + k) + 1
+                for i in range(l, r):
+                    res.append(i)
+        return res
