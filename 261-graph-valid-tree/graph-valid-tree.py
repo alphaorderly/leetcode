@@ -2,7 +2,6 @@ class Union:
     def __init__(self, n: int):
         self.parent = [-1] * n
         self.rank = [0] * n
-        self.n = n
         self.count = n - 1
 
     def find(self, a: int) -> int:
@@ -29,15 +28,6 @@ class Union:
             self.rank[b] = self.rank[a] + 1
 
         self.count -= 1
-
-    def same_parent(self):
-        x = self.find(0)
-
-        for i in range(1, self.n):
-            if self.find(i) != x:
-                return False
-
-        return True
 
 
 class Solution:
