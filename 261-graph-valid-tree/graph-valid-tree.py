@@ -17,7 +17,7 @@ class Union:
         if a == b:
             return
 
-        if self.rank[a] > self.rank[b]:
+        if self.rank[a] < self.rank[b]:
             self.parent[b] = a
             self.rank[a] = self.rank[b] + 1
         else:
