@@ -19,7 +19,10 @@ class Union:
 
         if self.rank[a] > self.rank[b]:
             self.parent[b] = a
-            self.rank[a] = self.rank[b] + 1
+            self.rank[a] = self.rank[b]
+        elif self.rank[a] < self.rank[b]:
+            self.parent[a] = b
+            self.rank[b] = self.rank[a]
         else:
             self.parent[a] = b
             self.rank[b] = self.rank[a] + 1
