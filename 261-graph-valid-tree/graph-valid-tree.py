@@ -3,6 +3,7 @@ class Union:
         self.parent = [-1] * n
         self.rank = [0] * n
         self.n = n
+        self.count = n - 1
 
     def find(self, a: int) -> int:
         while self.parent[a] != -1:
@@ -19,13 +20,15 @@ class Union:
 
         if self.rank[a] > self.rank[b]:
             self.parent[b] = a
-            self.rank[a] = self.rank[b]
+            self.rank[b] = self.rank[a]
         elif self.rank[a] < self.rank[b]:
             self.parent[a] = b
-            self.rank[b] = self.rank[a]
+            self.rank[a] = self.rank[b]
         else:
             self.parent[a] = b
             self.rank[b] = self.rank[a] + 1
+
+        self.count -= 1
 
     def same_parent(self):
         x = self.find(0)
@@ -47,4 +50,4 @@ class Solution:
             else:
                 u.union(a, b)
 
-        return u.same_parent()
+        return u.count == 0
