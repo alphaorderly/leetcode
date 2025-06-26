@@ -1,6 +1,8 @@
+from urllib.parse import quote, unquote
+
 class Codec:
     def encode(self, strs: List[str]) -> str:
-        return 'ㅁ'.join(strs)
+        return ' '.join([quote(s) for s in strs])
 
     def decode(self, s: str) -> List[str]:
-        return s.split('ㅁ')
+        return [unquote(i) for i in s.split(' ')]
