@@ -6,15 +6,13 @@ class Solution:
         check = []
 
         for ch in word:
-            if prev is None:
+            if prev != ch:
+                if prev is not None:
+                    check.append((prev, cnt))
                 prev = ch
                 cnt = 1
             elif prev == ch:
                 cnt += 1
-            else:
-                check.append((prev, cnt))
-                prev = ch
-                cnt = 1
 
         check.append((prev, cnt))
 
