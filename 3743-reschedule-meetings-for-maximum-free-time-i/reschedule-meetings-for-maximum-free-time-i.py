@@ -10,9 +10,11 @@ class Solution:
         if eventTime > last_end:
             time.append(eventTime - last_end)
 
-        ans = window = sum(time[:min(k + 1, len(time))])
+        N = len(time)
 
-        for i in range(k + 1, len(time)):
+        ans = window = sum(time[:min(k + 1, N)])
+
+        for i in range(k + 1, N):
             window += time[i] - time[i - k - 1]
             ans = max(ans, window)
 
