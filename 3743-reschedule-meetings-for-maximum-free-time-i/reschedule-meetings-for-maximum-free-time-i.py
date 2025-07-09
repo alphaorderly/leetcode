@@ -1,7 +1,6 @@
 class Solution:
     def maxFreeTime(self, eventTime: int, k: int, startTime: List[int], endTime: List[int]) -> int:
         last_end = 0
-
         time = []
 
         for s, e in zip(startTime, endTime):
@@ -11,11 +10,8 @@ class Solution:
         if eventTime > last_end:
             time.append(eventTime - last_end)
 
-        window = 0
+        window = sum(time[:min(k + 1, len(time))])
         ans = 0
-
-        for i in range(min(k + 1, len(time))):
-            window += time[i]
 
         ans = window
 
