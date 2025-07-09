@@ -13,8 +13,7 @@ class Solution:
         ans = window = sum(time[:min(k + 1, len(time))])
 
         for i in range(k + 1, len(time)):
-            window -= time[i - k - 1]
-            window += time[i]
+            window = window - time[i - k - 1] + time[i]
             ans = max(ans, window)
 
         return ans
