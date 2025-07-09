@@ -10,7 +10,7 @@ class ValidWordAbbr:
         if (word[0], word[-1], len(word)) not in self.abbr:
             return True
 
-        if len(self.abbr[(word[0], word[-1], len(word))]) == 1 and word in self.abbr[(word[0], word[-1], len(word))]:
+        elif len(self.abbr[(word[0], word[-1], len(word))]) == 1 and word in self.abbr[(word[0], word[-1], len(word))]:
             return True
 
         return False
