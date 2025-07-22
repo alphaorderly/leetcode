@@ -18,7 +18,7 @@ class NumMatrix:
 
         for r in range(1, self.ROW):
             for c in range(1, self.COL):
-                self.partial[r][c] = self.partial[r-1][c] + self.partial[r][c-1] + matrix[r][c] - self.partial[r-1][c-1]
+                self.partial[r][c] = self.partial[r - 1][c] + self.partial[r][c - 1] + matrix[r][c] - self.partial[r - 1][c - 1]
 
 
     def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
