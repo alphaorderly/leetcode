@@ -1,24 +1,25 @@
 class Solution:
     def minimumArea(self, grid: List[List[int]]) -> int:
-        rows = [sum(r) for r in grid]
-        cols = [sum(r) for r in list(zip(*grid))]
+        row_sum = [sum(row) for row in grid]
+        transposed = zip(*grid)
+        col_sum = [sum(col) for col in transposed]
 
-        rl = 0
-        rr = len(rows) - 1
+        r_left = 0
+        r_right = len(row_sum) - 1
 
-        cl = 0
-        cr = len(cols) - 1
+        c_left = 0
+        c_right = len(col_sum) - 1
 
-        while rows[rl] == 0:
-            rl += 1
+        while row_sum[r_left] == 0:
+            r_left += 1
 
-        while rows[rr] == 0:
-            rr -= 1
+        while row_sum[r_right] == 0:
+            r_right -= 1
 
-        while cols[cl] == 0:
-            cl += 1
+        while col_sum[c_left] == 0:
+            c_left += 1
 
-        while cols[cr] == 0:
-            cr -= 1
+        while col_sum[c_right] == 0:
+            c_right -= 1
 
-        return (rr - rl + 1) * (cr - cl + 1)
+        return (c_right - c_left + 1) * (r_right - r_left + 1)
