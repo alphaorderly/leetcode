@@ -17,6 +17,4 @@ class Solution:
 
             s.append(num)
 
-            print(g)
-
         return s
