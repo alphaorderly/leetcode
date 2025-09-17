@@ -1,31 +1,40 @@
+class UnionFind:
+    def __init__(self, n: int):
+        self.parent = [-1] * n
+        self.rank = [0] * n
+
+    def find(self, a: int) -> int:
+        while self.parent[a] != -1:
+            a = self.parent[a]
+
+        return a
+
+    def union(self, a: int, b: int) -> bool:
+        a = self.find(a)
+        b = self.find(b)
+
+        if a == b:
+            return True
+
+        if self.rank[a] > self.rank[b]:
+            self.parent[b] = a
+        elif self.rank[b] > self.rank[a]:
+            self.parent[a] = b
+        else:
+            self.parent[a] = b
+            self.rank[a] += 1
+
+
 class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
-        graph = defaultdict(list)
+        u = UnionFind(n)
 
         for a, b in edges:
-            graph[a].append(b)
-            graph[b].append(a)
+            u.union(a, b)
 
-        check = [False] * n
-        q = deque()
+        ans = set()
 
-        ans = 0
+        for a in range(n):
+            ans.add(u.find(a))
 
-        for i in range(n):
-            if check[i]:
-                continue
-
-            ans += 1
-
-            q.append(i)
-
-            while q:
-                n = q.popleft()
-                check[n] = True
-
-                for to in graph[n]:
-                    if not check[to]:
-                        q.append(to)
-
-        return ans
-
+        return len(ans)
