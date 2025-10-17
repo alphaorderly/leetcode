@@ -1,12 +1,9 @@
 class Solution:
     def shortestWay(self, source: str, target: str) -> int:
         placement = defaultdict(list)
-        N = len(source)
 
         for i, s in enumerate(source):
             placement[s].append(i)
-
-        print(placement)
 
         ans = 1
         position = 0
