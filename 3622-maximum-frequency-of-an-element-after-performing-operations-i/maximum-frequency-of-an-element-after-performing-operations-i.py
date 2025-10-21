@@ -14,10 +14,6 @@ class Solution:
             if right_bound == N or nums[right_bound] > v + k:
                 right_bound -= 1
 
-            count = right_bound - left_bound + 1
-
-            left = count - cntr[v]
-
-            ans = max(ans, cntr[v] + min(left, numOperations))
+            ans = max(ans, cntr[v] + min(right_bound - left_bound + 1 - cntr[v], numOperations))
 
         return ans
