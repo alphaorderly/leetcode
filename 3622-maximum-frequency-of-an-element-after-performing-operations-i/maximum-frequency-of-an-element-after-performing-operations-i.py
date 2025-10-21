@@ -11,8 +11,8 @@ class Solution:
             left_bound = bisect_left(nums, v - k)
             right_bound = bisect_right(nums, v + k)
 
-            if nums[left_bound] < v - k:
-                left_bound += 1
+            # if nums[left_bound] < v - k:
+            #     left_bound += 1
 
             if right_bound == N or nums[right_bound] > v + k:
                 right_bound -= 1
