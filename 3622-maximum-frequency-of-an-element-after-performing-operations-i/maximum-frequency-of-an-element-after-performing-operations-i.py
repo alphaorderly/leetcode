@@ -5,7 +5,7 @@ class Solution:
         N = len(nums)
         ans = 0
 
-        space = [i for i in range(nums[-1] + 1)]
+        space = [i for i in range(nums[0], nums[-1] + 1)]
 
         for i, v in enumerate(space):
             left_bound = bisect_left(nums, v - k)
