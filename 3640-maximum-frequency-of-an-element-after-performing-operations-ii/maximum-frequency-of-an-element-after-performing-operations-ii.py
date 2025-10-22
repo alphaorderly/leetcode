@@ -4,8 +4,6 @@ class Solution:
 
         cntr = Counter(nums)
 
-        nums.sort()
-
         for num in nums:
             start = max(0, num - k)
             end = num + k + 1
@@ -17,7 +15,7 @@ class Solution:
         N = len(nums)
 
         events.sort()
-
+        nums.sort()
 
         num_index = 0
         event_index = 0
