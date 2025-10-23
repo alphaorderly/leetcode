@@ -1,39 +1,29 @@
 class Solution:
     def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        
+        # 0을 한 번도 안 뒤집었을 때의 연속 1의 길이
+        consecutive_ones_no_flip = 0
+        
+        # 0을 최대 한 번 뒤집었을 때의 연속 1의 길이
+        consecutive_ones_one_flip = 0
+        
+        # 전체 최대 길이
+        max_ans = 0
 
-        N = len(nums)
+        for num in nums:
+            if num == 1:
+                # 1을 만나면 두 상태 모두 1씩 증가
+                consecutive_ones_no_flip += 1
+                consecutive_ones_one_flip += 1
+            else:  # num == 0
+                # 0을 만나면, "한 번 뒤집은 상태"는
+                # "이전까지 안 뒤집은 상태"에서 현재 0을 뒤집은 것이 됨
+                consecutive_ones_one_flip = consecutive_ones_no_flip + 1
+                
+                # "안 뒤집은 상태"는 0으로 리셋
+                consecutive_ones_no_flip = 0
+            
+            # 매 스텝마다 "한 번 뒤집은 상태"의 값으로 최대값 갱신
+            max_ans = max(max_ans, consecutive_ones_one_flip)
 
-        cache = {}
-
-        def dp(index: int, flipped: bool) -> int:
-            if index == N:
-                return 0
-
-            if nums[index] == 0:
-                if flipped:
-                    return 0
-
-                if (index, flipped) in cache:
-                    return cache[(index, flipped)]
-
-                flip = dp(index + 1, True) + 1
-
-                cache[(index, flipped)] = flip
-
-                return flip
-
-            if (index, flipped) in cache:
-                return cache[(index, flipped)]
-
-            value = dp(index + 1, flipped) + 1
-
-            cache[(index, flipped)] = value
-
-            return dp(index + 1, flipped) + 1
-
-        ans = 0
-
-        for i in range(N):
-            ans = max(ans, dp(i, False))
-
-        return ans
+        return max_ans
