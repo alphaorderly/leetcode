@@ -1,12 +1,14 @@
 class Solution:
     def numberOfBeams(self, bank: List[str]) -> int:
-        checker = "0" * len(bank[0])
+        check = '0' * len(bank[0])
 
-        bank = [sum([int(x) for x in b]) for b in bank if b != checker]
+        bank = [b for b in bank if b != check]
+
+        N = len(bank)
 
         ans = 0
 
-        for i in range(0, len(bank) - 1):
-            ans += bank[i] * bank[i+1]
+        for i in range(N - 1):
+            ans += bank[i].count("1") * bank[i + 1].count("1")
 
         return ans
