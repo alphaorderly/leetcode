@@ -5,8 +5,10 @@ class SparseVector:
     # Return the dotProduct of two sparse vectors
     def dotProduct(self, vec: 'SparseVector') -> int:
         ans = 0
-        for i, v in enumerate(vec.orig):
-            ans += v * self.orig[i]
+        index = 0
+        for v in vec.orig:
+            ans += v * self.orig[index]
+            index += 1
 
         return ans
         
