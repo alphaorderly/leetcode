@@ -1,11 +1,10 @@
 class Solution:
     def minNumberOperations(self, target: List[int]) -> int:
-        ans = 0
-        ref = 0
+        ans, val = 0, 0
 
         for num in target:
-            if ref < num:
-                ans += num - ref
-            ref = num
+            if val < num:
+                ans += num - val
+            val = num
 
         return ans
