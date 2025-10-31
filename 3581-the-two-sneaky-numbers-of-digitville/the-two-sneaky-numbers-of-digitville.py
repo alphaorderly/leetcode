@@ -1,5 +1,12 @@
 class Solution:
     def getSneakyNumbers(self, nums: List[int]) -> List[int]:
-        cntr = collections.Counter(nums)
+        ans = []
+        check = set()
 
-        return [i for i, v in cntr.items() if v > 1]
+        for num in nums:
+            if num in check:
+                ans.append(num)
+            else:
+                check.add(num)
+
+        return ans
