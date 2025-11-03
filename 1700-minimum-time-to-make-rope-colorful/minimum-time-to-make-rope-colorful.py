@@ -1,4 +1,3 @@
-__import__('atexit').register(lambda:open("display_runtime.txt","w").write("100000000"))
 
 class Solution:
     def minCost(self, colors: str, neededTime: List[int]) -> int:
